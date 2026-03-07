@@ -686,13 +686,13 @@
     </div>
   </section>
 
-  <!-- LIVE DEMO SECTION -->
-  <section class="mockup-section" id="demo">
+  <!-- MOCKUP SECTION -->
+  <section class="mockup-section">
     <div class="mockup-inner">
       <div class="mockup-text">
-        <div class="section-label">// See It Live</div>
-        <h2 class="section-title">Watch it work in real time</h2>
-        <p>No new apps to learn. No logins to remember. InvoiceMate lives in WhatsApp — the app already on your phone.</p>
+        <div class="section-label">// In Action</div>
+        <h2 class="section-title">Works exactly how you already work</h2>
+        <p>No new apps to learn. No logins to remember. InvoiceMate lives in WhatsApp — the app already on your phone that you use every day.</p>
         <p>60-second setup. Your name, logo, address and VAT number saved forever. Every invoice branded automatically.</p>
         <ul class="feature-list">
           <li>Invoices & quotes with one message</li>
@@ -703,318 +703,47 @@
           <li>Full invoice history — find any job by customer name</li>
         </ul>
       </div>
-
-      <!-- ANIMATED PHONE DEMO -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
-
-        <!-- Phone shell -->
-        <div style="
-          width:300px;
-          background:#111b21;
-          border-radius:32px;
-          overflow:hidden;
-          box-shadow: 0 0 0 1px #2a2f3a, 0 32px 64px rgba(0,0,0,0.5), 0 0 40px rgba(232,90,26,0.08);
-          position:relative;
-          flex-shrink:0;
-        ">
-          <!-- Status bar -->
-          <div style="background:#1f2c34;padding:7px 18px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#8696a0;">
-            <span style="font-weight:600;color:#e9edef;">09:41</span>
-            <span>▲▲▲ WiFi ■■■</span>
-          </div>
-
-          <!-- WA Header -->
-          <div style="background:#1f2c34;padding:9px 14px 11px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a3942;">
-            <span style="color:#00a884;font-size:17px;">‹</span>
-            <div style="width:34px;height:34px;background:linear-gradient(135deg,#f5a623,#e85a1a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:white;flex-shrink:0;">IM</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:600;color:#e9edef;">InvoiceMate</div>
-              <div style="font-size:11px;color:#8696a0;" id="demoStatus">online</div>
-            </div>
-            <div style="color:#8696a0;font-size:14px;display:flex;gap:12px;"><span>📞</span><span>⋮</span></div>
-          </div>
-
-          <!-- Invoice viewer overlay -->
-          <div id="demoInvoiceViewer" style="
-            position:absolute;top:0;left:0;right:0;bottom:0;
-            background:#f5f0e8;z-index:10;
-            transform:translateY(100%);
-            transition:transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
-            display:flex;flex-direction:column;overflow:hidden;
-          ">
-            <div style="background:#1f2c34;padding:9px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
-              <span style="color:#00a884;font-size:19px;cursor:pointer;" onclick="democloseInvoice()">‹</span>
-              <div style="flex:1;font-size:12px;font-weight:600;color:#e9edef;">INV-847291-Johnson.pdf</div>
-              <div style="color:#8696a0;font-size:13px;display:flex;gap:12px;"><span>⬇</span><span>⋮</span></div>
-            </div>
-            <div style="flex:1;overflow-y:auto;overflow-x:hidden;background:#f5f0e8;">
-              <div style="background:white;margin:6px;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-family:Helvetica,Arial,sans-serif;">
-                <div style="height:4px;background:linear-gradient(90deg,#f5a623,#c8420a);"></div>
-                <div style="padding:10px 12px;">
-                  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                    <div>
-                      <div style="font-size:11px;font-weight:900;color:#1a1612;letter-spacing:0.04em;text-transform:uppercase;">Johnson Plumbing & Heating</div>
-                      <div style="font-size:7px;color:#8a7f72;margin-top:1px;">14 Forge Lane, Luton, LU2 7PQ</div>
-                      <div style="font-size:7px;color:#8a7f72;">VAT Reg: GB 327 4891 02</div>
-                    </div>
-                    <div style="text-align:right;">
-                      <div style="font-size:7px;font-weight:700;color:#c8420a;letter-spacing:0.1em;text-transform:uppercase;">Invoice</div>
-                      <div style="font-size:11px;font-weight:900;color:#1a1612;">INV-847291</div>
-                      <div style="font-size:7px;color:#8a7f72;">07/03/2026</div>
-                      <div style="font-size:7px;color:#8a7f72;">Due: 06/04/2026</div>
-                    </div>
-                  </div>
-                  <div style="height:1px;background:#c8420a;margin:7px 0;"></div>
-                  <div style="font-size:6px;font-weight:700;color:#8a7f72;text-transform:uppercase;letter-spacing:0.1em;">Bill To</div>
-                  <div style="font-size:10px;font-weight:700;color:#1a1612;margin-top:2px;">Mr Dave Johnson</div>
-                  <div style="font-size:7px;color:#8a7f72;">22 High Street, Luton, LU1 2AB</div>
-                  <div style="font-size:7px;color:#8a7f72;font-style:italic;margin:5px 0;">Burst pipe repair & stopcock replacement</div>
-                  <table style="width:100%;border-collapse:collapse;font-size:7px;margin-top:3px;">
-                    <thead>
-                      <tr style="background:#1a1612;color:white;">
-                        <th style="padding:3px 4px;text-align:left;">Description</th>
-                        <th style="padding:3px 4px;">Qty</th>
-                        <th style="padding:3px 4px;text-align:right;">Rate</th>
-                        <th style="padding:3px 4px;text-align:right;">Amt</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">2 hrs</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£65</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£130</td></tr>
-                      <tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Stopcock</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">1</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£40</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£40</td></tr>
-                      <tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Fittings</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">1</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£8</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£8</td></tr>
-                    </tbody>
-                  </table>
-                  <div style="display:flex;justify-content:flex-end;margin-top:5px;">
-                    <div style="width:110px;">
-                      <div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£178.00</span></div>
-                      <div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT (20%):</span><span>£35.60</span></div>
-                      <div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£213.60</span></div>
-                    </div>
-                  </div>
-                  <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;">
-                    <div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Payment Details</div>
-                    <div style="color:#1a1612;">Barclays · Sort: 20-00-00 · Acc: 12345678</div>
-                    <div style="color:#1a1612;">Reference: <strong>INV-847291</strong></div>
-                  </div>
-                </div>
-                <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">Thank you for your business · InvoiceMate · invoicemate.uk</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Chat body -->
-          <div id="demoChatBody" style="
-            background:#0b141a;
-            height:420px;
-            padding:10px 8px 14px;
-            display:flex;
-            flex-direction:column;
-            gap:3px;
-            overflow-y:auto;
-            overflow-x:hidden;
-            scroll-behavior:smooth;
-          ">
-            <div style="text-align:center;margin:4px 0 8px;">
-              <span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span>
-            </div>
-          </div>
-
-          <!-- Input bar -->
-          <div style="background:#1f2c34;padding:7px 10px;display:flex;align-items:center;gap:8px;border-top:1px solid #2a3942;">
-            <div style="flex:1;background:#2a3942;border-radius:18px;padding:7px 12px;font-size:12px;color:#e9edef;display:flex;align-items:center;min-height:32px;">
-              <span id="demoInputText"></span><span id="demoCursor" style="display:inline-block;width:2px;height:13px;background:#00a884;margin-left:1px;animation:blink 1s step-end infinite;"></span>
-            </div>
-            <div style="width:36px;height:36px;background:#00a884;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;">🎤</div>
+      <div class="wa-mockup">
+        <div class="wa-header">
+          <div class="wa-avatar">IM</div>
+          <div>
+            <div class="wa-name">InvoiceMate</div>
+            <div class="wa-status">online</div>
           </div>
         </div>
-
-        <!-- Replay button -->
-        <button onclick="demoStart()" style="
-          background:transparent;border:1px solid #e85a1a;color:#e85a1a;
-          font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;
-          letter-spacing:0.08em;text-transform:uppercase;padding:9px 24px;cursor:pointer;
-          transition:all 0.2s;
-          clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));
-        " onmouseover="this.style.background='#e85a1a';this.style.color='white';"
-           onmouseout="this.style.background='transparent';this.style.color='#e85a1a';">
-          ↺ Replay Demo
-        </button>
+        <div class="wa-body">
+          <div class="wa-msg sent">
+            Fixed burst pipe at 14 Oak St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 14 day payment.
+            <div class="wa-time">14:32 ✓✓</div>
+          </div>
+          <div class="wa-msg received">
+            ⏳ Building your invoice...
+            <div class="wa-time">14:32</div>
+          </div>
+          <div class="wa-msg received">
+            🧾 <strong>Invoice Preview — INV-847291</strong><br><br>
+            <strong>Customer:</strong> Mr Dave Johnson<br>
+            <strong>Job:</strong> Burst pipe repair & stopcock replacement<br><br>
+            Labour: 2 hrs @ £65 = £130<br>
+            Stopcock: 1 item @ £40 = £40<br><br>
+            <strong>TOTAL: £170.00</strong><br><br>
+            Reply YES for PDF
+            <div class="wa-time">14:32</div>
+          </div>
+          <div class="wa-msg sent">
+            YES
+            <div class="wa-time">14:33 ✓✓</div>
+          </div>
+          <div class="wa-msg received">
+            📄 <strong>INV-847291.pdf</strong><br>
+            Invoice for Mr Dave Johnson — £170.00<br><br>
+            ✅ Done! Forward it straight to your customer.
+            <div class="wa-time">14:33</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <style>
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    @keyframes demoDotPulse { 0%,60%,100%{transform:translateY(0);opacity:0.5} 30%{transform:translateY(-3px);opacity:1} }
-    .demo-msg { opacity:0; transform:translateY(6px); transition:opacity 0.3s ease,transform 0.3s ease; }
-    .demo-msg.vis { opacity:1; transform:translateY(0); }
-  </style>
-
-  <script>
-  (function(){
-    const chatBody  = document.getElementById('demoChatBody');
-    const inputEl   = document.getElementById('demoInputText');
-    const statusEl  = document.getElementById('demoStatus');
-    const viewer    = document.getElementById('demoInvoiceViewer');
-
-    let timers = [];
-    function later(fn, ms){ const t=setTimeout(fn,ms); timers.push(t); return t; }
-    function clearAll(){ timers.forEach(t=>clearTimeout(t)); timers=[]; }
-
-    function demoopenInvoice(){ viewer.style.transform='translateY(0)'; }
-    window.democloseInvoice = function(){ viewer.style.transform='translateY(100%)'; }
-
-    function scrollBot(){ chatBody.scrollTop = chatBody.scrollHeight; }
-
-    function addMsg(side, htmlContent, isPDF, filename){
-      const wrap = document.createElement('div');
-      wrap.className = 'demo-msg';
-      wrap.style.cssText = `display:flex; margin-bottom:1px; align-self:${side==='sent'?'flex-end':'flex-start'}; max-width:88%;`;
-
-      if(isPDF){
-        const card = document.createElement('div');
-        card.style.cssText = 'background:#1f2c34;border-radius:0 7px 7px 7px;overflow:hidden;width:200px;cursor:pointer;';
-        card.innerHTML = `
-          <div style="background:linear-gradient(135deg,#1a1612,#2a1f18);height:90px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #e85a1a;">
-            <div style="width:120px;display:flex;flex-direction:column;gap:3px;opacity:0.7;">
-              <div style="height:4px;background:#e85a1a;border-radius:2px;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;width:60%;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;width:80%;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;"></div>
-              <div style="height:4px;background:#e85a1a;border-radius:2px;width:60%;"></div>
-            </div>
-          </div>
-          <div style="padding:6px 8px;display:flex;align-items:center;gap:7px;">
-            <div style="width:24px;height:24px;background:#e85a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:white;font-weight:700;flex-shrink:0;">PDF</div>
-            <div style="flex:1;"><div style="font-size:10px;font-weight:600;color:#e9edef;">${filename}</div><div style="font-size:9px;color:#8696a0;margin-top:1px;">48 KB · Tap to open</div></div>
-          </div>
-          <div style="padding:2px 8px 6px;font-size:9px;color:#8696a0;text-align:right;">09:43 <span style="color:#53bdeb;">✓✓</span></div>
-        `;
-        card.addEventListener('click', demoopenInvoice);
-        wrap.appendChild(card);
-      } else {
-        const bubble = document.createElement('div');
-        const isSent = side==='sent';
-        bubble.style.cssText = `padding:6px 9px 3px;border-radius:${isSent?'7px 0 7px 7px':'0 7px 7px 7px'};font-size:12px;line-height:1.4;color:#e9edef;background:${isSent?'#005c4b':'#1f2c34'};max-width:100%;word-wrap:break-word;`;
-        bubble.innerHTML = htmlContent;
-        const timeDiv = document.createElement('div');
-        timeDiv.style.cssText = 'font-size:9px;color:#8696a0;text-align:right;margin-top:2px;';
-        timeDiv.innerHTML = `09:4${Math.floor(Math.random()*3)+1}${isSent?' <span style="color:#53bdeb;">✓✓</span>':''}`;
-        bubble.appendChild(timeDiv);
-        wrap.appendChild(bubble);
-      }
-
-      chatBody.appendChild(wrap);
-      later(()=>{ wrap.classList.add('vis'); scrollBot(); }, 40);
-      return wrap;
-    }
-
-    function showTyping(ms, cb){
-      const ind = document.createElement('div');
-      ind.style.cssText = 'display:flex;align-self:flex-start;opacity:0;transition:opacity 0.3s;margin-bottom:1px;';
-      ind.innerHTML = `<div style="background:#1f2c34;border-radius:0 7px 7px 7px;padding:8px 11px;display:flex;gap:3px;align-items:center;">
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s infinite;"></span>
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.2s infinite;"></span>
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.4s infinite;"></span>
-      </div>`;
-      chatBody.appendChild(ind);
-      scrollBot();
-      later(()=>{ ind.style.opacity='1'; }, 40);
-      later(()=>{ ind.remove(); if(cb)cb(); }, ms);
-    }
-
-    function typeText(text, cb){
-      inputEl.textContent = '';
-      let i = 0;
-      const spd = Math.max(16, Math.min(45, 1600/text.length));
-      function tick(){
-        if(i < text.length){ inputEl.textContent += text[i++]; later(tick, spd + (Math.random()*16-8)); }
-        else { later(()=>{ if(cb)cb(); }, 350); }
-      }
-      tick();
-    }
-
-    const script = [
-      { type:'type', text:'Hi', delay:900 },
-      { type:'send', side:'sent', html:'Hi' },
-      { type:'typing', ms:1100 },
-      { type:'recv', html:'👋 <strong style="color:#f5a623;">Welcome to InvoiceMate!</strong><br><br>I turn job descriptions into professional PDF invoices in 30 seconds.<br><br>What\'s your <strong style="color:#f5a623;">business name?</strong>' },
-      { type:'type', text:'Johnson Plumbing & Heating', delay:1100 },
-      { type:'send', side:'sent', html:'Johnson Plumbing & Heating' },
-      { type:'typing', ms:900 },
-      { type:'recv', html:'Got it — <strong style="color:#f5a623;">Johnson Plumbing & Heating</strong> ✓<br><br>Are you <strong style="color:#f5a623;">VAT registered?</strong> Send your VAT number or reply NO.' },
-      { type:'type', text:'GB 327 4891 02', delay:900 },
-      { type:'send', side:'sent', html:'GB 327 4891 02' },
-      { type:'typing', ms:800 },
-      { type:'recv', html:'VAT saved ✓<br><br>🔥 <strong style="color:#f5a623;">All set!</strong> Describe any job and I\'ll build the invoice.' },
-      { type:'type', text:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.', delay:1600 },
-      { type:'send', side:'sent', html:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.' },
-      { type:'status', text:'building invoice...' },
-      { type:'typing', ms:2000 },
-      { type:'recv', html:'🧾 <strong style="color:#f5a623;">Invoice Preview — INV-847291</strong><br><br><strong>Customer:</strong> Mr Dave Johnson<br><strong>Job:</strong> Burst pipe repair & stopcock<br><br>Labour: 2 hrs @ £65 = £130.00<br>Stopcock: £40.00 · Fittings: £8.00<br>VAT (20%): £35.60<br><br><strong style="color:#f5a623;">TOTAL: £213.60</strong><br><br>Reply <strong>YES</strong> to generate PDF' },
-      { type:'type', text:'YES', delay:700 },
-      { type:'send', side:'sent', html:'YES' },
-      { type:'status', text:'generating PDF...' },
-      { type:'typing', ms:1800 },
-      { type:'pdf', filename:'INV-847291-Johnson.pdf' },
-      { type:'typing', ms:600 },
-      { type:'recv', html:'✅ <strong style="color:#f5a623;">Done!</strong> Forward it straight to Mr Dave Johnson. 👆<br><br>Send me your next job whenever you\'re ready.' },
-      { type:'status', text:'online' },
-      { type:'openInvoice' }
-    ];
-
-    function run(i){
-      if(i >= script.length) return;
-      const s = script[i];
-
-      if(s.type==='type'){
-        later(()=>typeText(s.text, ()=>run(i+1)), s.delay||600);
-        return;
-      }
-      if(s.type==='send'){
-        later(()=>{ inputEl.textContent=''; addMsg(s.side, s.html); run(i+1); }, 180);
-        return;
-      }
-      if(s.type==='recv'){
-        later(()=>{ addMsg('received', s.html); later(()=>run(i+1), 350); }, 80);
-        return;
-      }
-      if(s.type==='typing'){
-        later(()=>showTyping(s.ms, ()=>run(i+1)), 280);
-        return;
-      }
-      if(s.type==='pdf'){
-        later(()=>{ addMsg('received', '', true, s.filename); later(()=>run(i+1), 350); }, 80);
-        return;
-      }
-      if(s.type==='status'){
-        statusEl.textContent = s.text; run(i+1); return;
-      }
-      if(s.type==='openInvoice'){
-        later(()=>demoopenInvoice(), 900); return;
-      }
-      run(i+1);
-    }
-
-    window.demoStart = function(){
-      clearAll();
-      viewer.style.transform = 'translateY(100%)';
-      // Clear chat keeping date stamp
-      chatBody.innerHTML = '<div style="text-align:center;margin:4px 0 8px;"><span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span></div>';
-      inputEl.textContent = '';
-      statusEl.textContent = 'online';
-      later(()=>run(0), 500);
-    };
-
-    // Auto-start when section scrolls into view
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ window.demoStart(); observer.disconnect(); } });
-    }, { threshold: 0.3 });
-    observer.observe(document.getElementById('demo'));
-
-  })();
-  </script>
 
   <!-- PRICING -->
   <section id="pricing">
@@ -1070,7 +799,11 @@
     <div class="footer-links">
       <a href="#how">How It Works</a>
       <a href="#pricing">Pricing</a>
-      <a href="/cdn-cgi/l/email-protection#640c0108080b240d0a120b0d0701090510014a110f">Contact</a>
+      <a href="mailto:hello@invoicemate.uk">Contact</a>
       <a href="#">Privacy</a>
     </div>
-    <div class="footer-copy">© 2026 InvoiceMate · invoice
+    <div class="footer-copy">© 2026 InvoiceMate · invoicemate.uk</div>
+  </footer>
+
+</body>
+</html>
