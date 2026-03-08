@@ -693,326 +693,272 @@
         <div class="section-label">// See It Live</div>
         <h2 class="section-title">Watch it work in real time</h2>
         <p>No new apps to learn. No logins to remember. InvoiceMate lives in WhatsApp — the app already on your phone.</p>
-        <p>60-second setup. Your name, logo, address and VAT number saved forever. Every invoice branded automatically.</p>
+        <p>60-second setup. Your name, logo, address and VAT number saved forever. Every invoice and quote branded automatically.</p>
         <ul class="feature-list">
           <li>Invoices & quotes with one message</li>
           <li>Auto VAT calculation for registered tradespeople</li>
           <li>Bank transfer, cash, or payment link on every invoice</li>
-          <li>Automatic payment reminders at 7, 14 & 30 days</li>
           <li>Convert quotes to invoices instantly</li>
+          <li>Deposit splits on quotes — automatically calculated</li>
           <li>Full invoice history — find any job by customer name</li>
         </ul>
       </div>
 
-      <!-- ANIMATED PHONE DEMO -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <!-- TABBED PHONE DEMO -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+
+        <!-- Tabs -->
+        <div style="display:flex;gap:0;border:1px solid #2e333d;overflow:hidden;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">
+          <button id="tabInvoice" onclick="switchTab('invoice')" style="background:#e85a1a;color:white;border:none;padding:8px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;">Invoice</button>
+          <button id="tabQuote" onclick="switchTab('quote')" style="background:transparent;color:#6b7280;border:none;padding:8px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;">Quote → Invoice</button>
+        </div>
 
         <!-- Phone shell -->
-        <div style="
-          width:300px;
-          background:#111b21;
-          border-radius:32px;
-          overflow:hidden;
-          box-shadow: 0 0 0 1px #2a2f3a, 0 32px 64px rgba(0,0,0,0.5), 0 0 40px rgba(232,90,26,0.08);
-          position:relative;
-          flex-shrink:0;
-        ">
-          <!-- Status bar -->
-          <div style="background:#1f2c34;padding:7px 18px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#8696a0;">
-            <span style="font-weight:600;color:#e9edef;">09:41</span>
-            <span>▲▲▲ WiFi ■■■</span>
-          </div>
-
-          <!-- WA Header -->
+        <div style="width:300px;background:#111b21;border-radius:32px;overflow:hidden;box-shadow:0 0 0 1px #2a2f3a,0 32px 64px rgba(0,0,0,0.5),0 0 40px rgba(232,90,26,0.08);position:relative;flex-shrink:0;">
+          <div style="background:#1f2c34;padding:7px 18px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#8696a0;"><span style="font-weight:600;color:#e9edef;">09:41</span><span>▲▲▲ WiFi ■■■</span></div>
           <div style="background:#1f2c34;padding:9px 14px 11px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a3942;">
             <span style="color:#00a884;font-size:17px;">‹</span>
             <div style="width:34px;height:34px;background:linear-gradient(135deg,#f5a623,#e85a1a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:white;flex-shrink:0;">IM</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:600;color:#e9edef;">InvoiceMate</div>
-              <div style="font-size:11px;color:#8696a0;" id="demoStatus">online</div>
-            </div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;color:#e9edef;">InvoiceMate</div><div style="font-size:11px;color:#8696a0;" id="demoStatus">online</div></div>
             <div style="color:#8696a0;font-size:14px;display:flex;gap:12px;"><span>📞</span><span>⋮</span></div>
           </div>
 
-          <!-- Invoice viewer overlay -->
-          <div id="demoInvoiceViewer" style="
-            position:absolute;top:0;left:0;right:0;bottom:0;
-            background:#f5f0e8;z-index:10;
-            transform:translateY(100%);
-            transition:transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
-            display:flex;flex-direction:column;overflow:hidden;
-          ">
+          <!-- Viewer overlay -->
+          <div id="demoInvoiceViewer" style="position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f0e8;z-index:10;transform:translateY(100%);transition:transform 0.45s cubic-bezier(0.25,0.8,0.25,1);display:flex;flex-direction:column;overflow:hidden;">
             <div style="background:#1f2c34;padding:9px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
               <span style="color:#00a884;font-size:19px;cursor:pointer;" onclick="democloseInvoice()">‹</span>
-              <div style="flex:1;font-size:12px;font-weight:600;color:#e9edef;">INV-847291-Johnson.pdf</div>
+              <div id="viewerTitle" style="flex:1;font-size:12px;font-weight:600;color:#e9edef;">INV-847291-Johnson.pdf</div>
               <div style="color:#8696a0;font-size:13px;display:flex;gap:12px;"><span>⬇</span><span>⋮</span></div>
             </div>
-            <div style="flex:1;overflow-y:auto;overflow-x:hidden;background:#f5f0e8;">
-              <div style="background:white;margin:6px;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-family:Helvetica,Arial,sans-serif;">
+            <div style="flex:1;overflow-y:auto;background:#f5f0e8;">
+              <!-- Invoice PDF -->
+              <div id="invoiceDoc" style="background:white;margin:6px;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-family:Helvetica,Arial,sans-serif;">
                 <div style="height:4px;background:linear-gradient(90deg,#f5a623,#c8420a);"></div>
                 <div style="padding:10px 12px;">
-                  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                    <div>
-                      <div style="font-size:11px;font-weight:900;color:#1a1612;letter-spacing:0.04em;text-transform:uppercase;">Johnson Plumbing & Heating</div>
-                      <div style="font-size:7px;color:#8a7f72;margin-top:1px;">14 Forge Lane, Luton, LU2 7PQ</div>
-                      <div style="font-size:7px;color:#8a7f72;">VAT Reg: GB 327 4891 02</div>
-                    </div>
-                    <div style="text-align:right;">
-                      <div style="font-size:7px;font-weight:700;color:#c8420a;letter-spacing:0.1em;text-transform:uppercase;">Invoice</div>
-                      <div style="font-size:11px;font-weight:900;color:#1a1612;">INV-847291</div>
-                      <div style="font-size:7px;color:#8a7f72;">07/03/2026</div>
-                      <div style="font-size:7px;color:#8a7f72;">Due: 06/04/2026</div>
-                    </div>
-                  </div>
-                  <div style="height:1px;background:#c8420a;margin:7px 0;"></div>
-                  <div style="font-size:6px;font-weight:700;color:#8a7f72;text-transform:uppercase;letter-spacing:0.1em;">Bill To</div>
-                  <div style="font-size:10px;font-weight:700;color:#1a1612;margin-top:2px;">Mr Dave Johnson</div>
-                  <div style="font-size:7px;color:#8a7f72;">22 High Street, Luton, LU1 2AB</div>
-                  <div style="font-size:7px;color:#8a7f72;font-style:italic;margin:5px 0;">Burst pipe repair & stopcock replacement</div>
-                  <table style="width:100%;border-collapse:collapse;font-size:7px;margin-top:3px;">
-                    <thead>
-                      <tr style="background:#1a1612;color:white;">
-                        <th style="padding:3px 4px;text-align:left;">Description</th>
-                        <th style="padding:3px 4px;">Qty</th>
-                        <th style="padding:3px 4px;text-align:right;">Rate</th>
-                        <th style="padding:3px 4px;text-align:right;">Amt</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">2 hrs</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£65</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£130</td></tr>
-                      <tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Stopcock</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">1</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£40</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£40</td></tr>
-                      <tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Fittings</td><td style="padding:3px 4px;text-align:center;color:#8a7f72;">1</td><td style="padding:3px 4px;text-align:right;color:#8a7f72;">£8</td><td style="padding:3px 4px;text-align:right;font-weight:700;color:#1a1612;">£8</td></tr>
-                    </tbody>
-                  </table>
-                  <div style="display:flex;justify-content:flex-end;margin-top:5px;">
-                    <div style="width:110px;">
-                      <div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£178.00</span></div>
-                      <div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT (20%):</span><span>£35.60</span></div>
-                      <div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£213.60</span></div>
-                    </div>
-                  </div>
-                  <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;">
-                    <div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Payment Details</div>
-                    <div style="color:#1a1612;">Barclays · Sort: 20-00-00 · Acc: 12345678</div>
-                    <div style="color:#1a1612;">Reference: <strong>INV-847291</strong></div>
-                  </div>
+                  <div style="display:flex;justify-content:space-between;"><div><div style="font-size:11px;font-weight:900;color:#1a1612;text-transform:uppercase;">Johnson Plumbing</div><div style="font-size:7px;color:#8a7f72;">VAT: GB 327 4891 02</div></div><div style="text-align:right;"><div style="font-size:7px;font-weight:700;color:#c8420a;text-transform:uppercase;">Invoice</div><div style="font-size:11px;font-weight:900;color:#1a1612;">INV-847291</div><div style="font-size:7px;color:#8a7f72;">Due: 06/04/2026</div></div></div>
+                  <div style="height:1px;background:#c8420a;margin:6px 0;"></div>
+                  <div style="font-size:10px;font-weight:700;color:#1a1612;">Mr Dave Johnson</div>
+                  <div style="font-size:7px;color:#8a7f72;font-style:italic;margin:4px 0;">Burst pipe repair & stopcock replacement</div>
+                  <table style="width:100%;border-collapse:collapse;font-size:7px;"><thead><tr style="background:#1a1612;color:white;"><th style="padding:3px 4px;text-align:left;">Item</th><th style="padding:3px 4px;text-align:right;">Total</th></tr></thead><tbody><tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour (2hrs@£65)</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£130.00</td></tr><tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Stopcock & fittings</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£48.00</td></tr></tbody></table>
+                  <div style="display:flex;justify-content:flex-end;margin-top:5px;"><div style="width:110px;"><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£178.00</span></div><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT 20%:</span><span>£35.60</span></div><div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£213.60</span></div></div></div>
+                  <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;"><div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;margin-bottom:2px;">Bank Details</div><div style="color:#1a1612;">Barclays · 20-00-00 · 12345678 · Ref: INV-847291</div></div>
                 </div>
-                <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">Thank you for your business · InvoiceMate · invoicemate.uk</div>
+                <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">InvoiceMate · invoicemate.uk</div>
+              </div>
+              <!-- Quote PDF -->
+              <div id="quoteDoc" style="display:none;background:white;margin:6px;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-family:Helvetica,Arial,sans-serif;position:relative;">
+                <div style="height:4px;background:linear-gradient(90deg,#f5a623,#c8420a);"></div>
+                <div style="position:absolute;top:45%;left:50%;transform:translate(-50%,-50%) rotate(-35deg);font-size:38px;font-weight:900;color:rgba(200,66,10,0.06);pointer-events:none;white-space:nowrap;font-family:Helvetica;">QUOTE</div>
+                <div style="padding:10px 12px;">
+                  <div style="display:flex;justify-content:space-between;"><div><div style="font-size:11px;font-weight:900;color:#1a1612;text-transform:uppercase;">Johnson Plumbing</div><div style="font-size:7px;color:#8a7f72;">VAT: GB 327 4891 02</div></div><div style="text-align:right;"><div style="font-size:7px;font-weight:700;color:#c8420a;text-transform:uppercase;">Quote</div><div style="font-size:11px;font-weight:900;color:#1a1612;">QTE-293847</div><div style="font-size:7px;color:#8a7f72;">Valid: 06/04/2026</div></div></div>
+                  <div style="height:1px;background:#c8420a;margin:6px 0;"></div>
+                  <div style="font-size:10px;font-weight:700;color:#1a1612;">Mr Tom Bradley</div>
+                  <div style="font-size:7px;color:#8a7f72;font-style:italic;margin:4px 0;">New bathroom — 5 Main Street</div>
+                  <table style="width:100%;border-collapse:collapse;font-size:7px;"><thead><tr style="background:#1a1612;color:white;"><th style="padding:3px 4px;text-align:left;">Item</th><th style="padding:3px 4px;text-align:right;">Total</th></tr></thead><tbody><tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Tiles & materials</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£400.00</td></tr><tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour (4 days@£200)</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£800.00</td></tr></tbody></table>
+                  <div style="display:flex;justify-content:flex-end;margin-top:5px;"><div style="width:110px;"><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£1,200.00</span></div><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT 20%:</span><span>£240.00</span></div><div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£1,440.00</span></div></div></div>
+                  <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;"><div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;margin-bottom:2px;">Payment Schedule</div><div style="color:#1a1612;">Deposit (30%): <strong>£432.00</strong> · Balance: <strong>£1,008.00</strong></div></div>
+                </div>
+                <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">InvoiceMate · invoicemate.uk</div>
+              </div>
+              <!-- Converted Invoice PDF -->
+              <div id="convertedDoc" style="display:none;background:white;margin:6px;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-family:Helvetica,Arial,sans-serif;">
+                <div style="height:4px;background:linear-gradient(90deg,#f5a623,#c8420a);"></div>
+                <div style="padding:10px 12px;">
+                  <div style="display:flex;justify-content:space-between;"><div><div style="font-size:11px;font-weight:900;color:#1a1612;text-transform:uppercase;">Johnson Plumbing</div><div style="font-size:7px;color:#8a7f72;">VAT: GB 327 4891 02</div></div><div style="text-align:right;"><div style="font-size:7px;font-weight:700;color:#c8420a;text-transform:uppercase;">Invoice</div><div style="font-size:11px;font-weight:900;color:#1a1612;">INV-948302</div><div style="font-size:7px;color:#8a7f72;">From QTE-293847</div><div style="font-size:7px;color:#8a7f72;">Due: 07/04/2026</div></div></div>
+                  <div style="height:1px;background:#c8420a;margin:6px 0;"></div>
+                  <div style="font-size:10px;font-weight:700;color:#1a1612;">Mr Tom Bradley</div>
+                  <div style="font-size:7px;color:#8a7f72;font-style:italic;margin:4px 0;">New bathroom — 5 Main Street</div>
+                  <table style="width:100%;border-collapse:collapse;font-size:7px;"><thead><tr style="background:#1a1612;color:white;"><th style="padding:3px 4px;text-align:left;">Item</th><th style="padding:3px 4px;text-align:right;">Total</th></tr></thead><tbody><tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Tiles & materials</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£400.00</td></tr><tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour (4 days@£200)</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£800.00</td></tr></tbody></table>
+                  <div style="display:flex;justify-content:flex-end;margin-top:5px;"><div style="width:110px;"><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£1,200.00</span></div><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT 20%:</span><span>£240.00</span></div><div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£1,440.00</span></div></div></div>
+                  <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;"><div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;margin-bottom:2px;">Bank Details</div><div style="color:#1a1612;">Barclays · 20-00-00 · 12345678 · Ref: INV-948302</div></div>
+                </div>
+                <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">InvoiceMate · invoicemate.uk</div>
               </div>
             </div>
           </div>
 
           <!-- Chat body -->
-          <div id="demoChatBody" style="
-            background:#0b141a;
-            height:420px;
-            padding:10px 8px 14px;
-            display:flex;
-            flex-direction:column;
-            gap:3px;
-            overflow-y:auto;
-            overflow-x:hidden;
-            scroll-behavior:smooth;
-          ">
-            <div style="text-align:center;margin:4px 0 8px;">
-              <span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span>
-            </div>
+          <div id="demoChatBody" style="background:#0b141a;height:420px;padding:10px 8px 14px;display:flex;flex-direction:column;gap:3px;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;">
+            <div style="text-align:center;margin:4px 0 8px;"><span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span></div>
           </div>
 
           <!-- Input bar -->
           <div style="background:#1f2c34;padding:7px 10px;display:flex;align-items:center;gap:8px;border-top:1px solid #2a3942;">
-            <div style="flex:1;background:#2a3942;border-radius:18px;padding:7px 12px;font-size:12px;color:#e9edef;display:flex;align-items:center;min-height:32px;">
-              <span id="demoInputText"></span><span id="demoCursor" style="display:inline-block;width:2px;height:13px;background:#00a884;margin-left:1px;animation:blink 1s step-end infinite;"></span>
-            </div>
+            <div style="flex:1;background:#2a3942;border-radius:18px;padding:7px 12px;font-size:12px;color:#e9edef;display:flex;align-items:center;min-height:32px;"><span id="demoInputText"></span><span style="display:inline-block;width:2px;height:13px;background:#00a884;margin-left:1px;animation:blink 1s step-end infinite;"></span></div>
             <div style="width:36px;height:36px;background:#00a884;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;">🎤</div>
           </div>
         </div>
 
-        <!-- Replay button -->
-        <button onclick="demoStart()" style="
-          background:transparent;border:1px solid #e85a1a;color:#e85a1a;
-          font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;
-          letter-spacing:0.08em;text-transform:uppercase;padding:9px 24px;cursor:pointer;
-          transition:all 0.2s;
-          clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));
-        " onmouseover="this.style.background='#e85a1a';this.style.color='white';"
-           onmouseout="this.style.background='transparent';this.style.color='#e85a1a';">
-          ↺ Replay Demo
-        </button>
+        <button onclick="demoStart()" style="background:transparent;border:1px solid #e85a1a;color:#e85a1a;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;padding:9px 24px;cursor:pointer;transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));" onmouseover="this.style.background='#e85a1a';this.style.color='white';" onmouseout="this.style.background='transparent';this.style.color='#e85a1a';">↺ Replay Demo</button>
       </div>
     </div>
   </section>
 
   <style>
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    @keyframes demoDotPulse { 0%,60%,100%{transform:translateY(0);opacity:0.5} 30%{transform:translateY(-3px);opacity:1} }
-    .demo-msg { opacity:0; transform:translateY(6px); transition:opacity 0.3s ease,transform 0.3s ease; }
-    .demo-msg.vis { opacity:1; transform:translateY(0); }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    @keyframes demoDotPulse{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-3px);opacity:1}}
+    .demo-msg{opacity:0;transform:translateY(6px);transition:opacity 0.3s ease,transform 0.3s ease;}
+    .demo-msg.vis{opacity:1;transform:translateY(0);}
   </style>
 
   <script>
   (function(){
-    const chatBody  = document.getElementById('demoChatBody');
-    const inputEl   = document.getElementById('demoInputText');
-    const statusEl  = document.getElementById('demoStatus');
-    const viewer    = document.getElementById('demoInvoiceViewer');
+    const chatBody=document.getElementById('demoChatBody');
+    const inputEl=document.getElementById('demoInputText');
+    const statusEl=document.getElementById('demoStatus');
+    const viewer=document.getElementById('demoInvoiceViewer');
+    const viewerTitle=document.getElementById('viewerTitle');
+    let timers=[]; let currentTab='invoice';
+    function later(fn,ms){const t=setTimeout(fn,ms);timers.push(t);return t;}
+    function clearAll(){timers.forEach(t=>clearTimeout(t));timers=[];}
+    function scrollBot(){chatBody.scrollTop=chatBody.scrollHeight;}
 
-    let timers = [];
-    function later(fn, ms){ const t=setTimeout(fn,ms); timers.push(t); return t; }
-    function clearAll(){ timers.forEach(t=>clearTimeout(t)); timers=[]; }
+    function openViewer(mode){
+      document.getElementById('invoiceDoc').style.display=mode==='invoice'?'block':'none';
+      document.getElementById('quoteDoc').style.display=mode==='quote'?'block':'none';
+      document.getElementById('convertedDoc').style.display=mode==='converted'?'block':'none';
+      if(mode==='invoice') viewerTitle.textContent='INV-847291-Johnson.pdf';
+      if(mode==='quote') viewerTitle.textContent='QTE-293847-Bradley.pdf';
+      if(mode==='converted') viewerTitle.textContent='INV-948302-Bradley.pdf';
+      viewer.style.transform='translateY(0)';
+    }
+    window.democloseInvoice=function(){viewer.style.transform='translateY(100%)';};
 
-    function demoopenInvoice(){ viewer.style.transform='translateY(0)'; }
-    window.democloseInvoice = function(){ viewer.style.transform='translateY(100%)'; }
-
-    function scrollBot(){ chatBody.scrollTop = chatBody.scrollHeight; }
-
-    function addMsg(side, htmlContent, isPDF, filename){
-      const wrap = document.createElement('div');
-      wrap.className = 'demo-msg';
-      wrap.style.cssText = `display:flex; margin-bottom:1px; align-self:${side==='sent'?'flex-end':'flex-start'}; max-width:88%;`;
-
+    function addMsg(side,html,isPDF,filename,pdfMode){
+      const wrap=document.createElement('div');
+      wrap.className='demo-msg';
+      wrap.style.cssText=`display:flex;margin-bottom:1px;align-self:${side==='sent'?'flex-end':'flex-start'};max-width:90%;`;
       if(isPDF){
-        const card = document.createElement('div');
-        card.style.cssText = 'background:#1f2c34;border-radius:0 7px 7px 7px;overflow:hidden;width:200px;cursor:pointer;';
-        card.innerHTML = `
-          <div style="background:linear-gradient(135deg,#1a1612,#2a1f18);height:90px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #e85a1a;">
-            <div style="width:120px;display:flex;flex-direction:column;gap:3px;opacity:0.7;">
-              <div style="height:4px;background:#e85a1a;border-radius:2px;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;width:60%;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;width:80%;"></div>
-              <div style="height:4px;background:#5a4a3a;border-radius:2px;"></div>
-              <div style="height:4px;background:#e85a1a;border-radius:2px;width:60%;"></div>
-            </div>
-          </div>
-          <div style="padding:6px 8px;display:flex;align-items:center;gap:7px;">
-            <div style="width:24px;height:24px;background:#e85a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:white;font-weight:700;flex-shrink:0;">PDF</div>
-            <div style="flex:1;"><div style="font-size:10px;font-weight:600;color:#e9edef;">${filename}</div><div style="font-size:9px;color:#8696a0;margin-top:1px;">48 KB · Tap to open</div></div>
-          </div>
-          <div style="padding:2px 8px 6px;font-size:9px;color:#8696a0;text-align:right;">09:43 <span style="color:#53bdeb;">✓✓</span></div>
-        `;
-        card.addEventListener('click', demoopenInvoice);
+        const card=document.createElement('div');
+        card.style.cssText='background:#1f2c34;border-radius:0 7px 7px 7px;overflow:hidden;width:210px;cursor:pointer;';
+        const isQ=pdfMode==='quote';
+        card.innerHTML=`<div style="background:linear-gradient(135deg,#1a1612,#2a1f18);height:85px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #e85a1a;position:relative;">${isQ?'<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-18deg);font-size:16px;font-weight:900;color:rgba(200,66,10,0.2);font-family:Helvetica;">QUOTE</div>':''}<div style="width:115px;display:flex;flex-direction:column;gap:3px;opacity:0.7;"><div style="height:4px;background:#e85a1a;border-radius:2px;"></div><div style="height:4px;background:#5a4a3a;border-radius:2px;width:60%;"></div><div style="height:4px;background:#5a4a3a;border-radius:2px;"></div><div style="height:4px;background:#5a4a3a;border-radius:2px;width:80%;"></div><div style="height:4px;background:#e85a1a;border-radius:2px;width:55%;"></div></div></div><div style="padding:5px 8px;display:flex;align-items:center;gap:7px;"><div style="width:22px;height:22px;background:#e85a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;font-weight:700;flex-shrink:0;">PDF</div><div style="flex:1;"><div style="font-size:10px;font-weight:600;color:#e9edef;">${filename}</div><div style="font-size:9px;color:#8696a0;">Tap to open</div></div></div><div style="padding:2px 8px 5px;font-size:9px;color:#8696a0;text-align:right;">09:43 <span style="color:#53bdeb;">✓✓</span></div>`;
+        card.addEventListener('click',()=>openViewer(pdfMode||'invoice'));
         wrap.appendChild(card);
       } else {
-        const bubble = document.createElement('div');
-        const isSent = side==='sent';
-        bubble.style.cssText = `padding:6px 9px 3px;border-radius:${isSent?'7px 0 7px 7px':'0 7px 7px 7px'};font-size:12px;line-height:1.4;color:#e9edef;background:${isSent?'#005c4b':'#1f2c34'};max-width:100%;word-wrap:break-word;`;
-        bubble.innerHTML = htmlContent;
-        const timeDiv = document.createElement('div');
-        timeDiv.style.cssText = 'font-size:9px;color:#8696a0;text-align:right;margin-top:2px;';
-        timeDiv.innerHTML = `09:4${Math.floor(Math.random()*3)+1}${isSent?' <span style="color:#53bdeb;">✓✓</span>':''}`;
-        bubble.appendChild(timeDiv);
+        const bubble=document.createElement('div');
+        const isSent=side==='sent';
+        bubble.style.cssText=`padding:6px 9px 3px;border-radius:${isSent?'7px 0 7px 7px':'0 7px 7px 7px'};font-size:12px;line-height:1.4;color:#e9edef;background:${isSent?'#005c4b':'#1f2c34'};max-width:100%;word-wrap:break-word;`;
+        bubble.innerHTML=html;
+        const t=document.createElement('div');
+        t.style.cssText='font-size:9px;color:#8696a0;text-align:right;margin-top:2px;';
+        t.innerHTML=`09:4${Math.floor(Math.random()*4)+1}${isSent?' <span style="color:#53bdeb;">✓✓</span>':''}`;
+        bubble.appendChild(t);
         wrap.appendChild(bubble);
       }
-
       chatBody.appendChild(wrap);
-      later(()=>{ wrap.classList.add('vis'); scrollBot(); }, 40);
-      return wrap;
+      later(()=>{wrap.classList.add('vis');scrollBot();},40);
     }
 
-    function showTyping(ms, cb){
-      const ind = document.createElement('div');
-      ind.style.cssText = 'display:flex;align-self:flex-start;opacity:0;transition:opacity 0.3s;margin-bottom:1px;';
-      ind.innerHTML = `<div style="background:#1f2c34;border-radius:0 7px 7px 7px;padding:8px 11px;display:flex;gap:3px;align-items:center;">
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s infinite;"></span>
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.2s infinite;"></span>
-        <span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.4s infinite;"></span>
-      </div>`;
-      chatBody.appendChild(ind);
-      scrollBot();
-      later(()=>{ ind.style.opacity='1'; }, 40);
-      later(()=>{ ind.remove(); if(cb)cb(); }, ms);
+    function showTyping(ms,cb){
+      const ind=document.createElement('div');
+      ind.style.cssText='display:flex;align-self:flex-start;opacity:0;transition:opacity 0.3s;margin-bottom:1px;';
+      ind.innerHTML='<div style="background:#1f2c34;border-radius:0 7px 7px 7px;padding:8px 11px;display:flex;gap:3px;align-items:center;"><span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s infinite;"></span><span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.2s infinite;"></span><span style="width:5px;height:5px;background:#8696a0;border-radius:50%;display:inline-block;animation:demoDotPulse 1.2s 0.4s infinite;"></span></div>';
+      chatBody.appendChild(ind);scrollBot();
+      later(()=>{ind.style.opacity='1';},40);
+      later(()=>{ind.remove();if(cb)cb();},ms);
     }
 
-    function typeText(text, cb){
-      inputEl.textContent = '';
-      let i = 0;
-      const spd = Math.max(16, Math.min(45, 1600/text.length));
-      function tick(){
-        if(i < text.length){ inputEl.textContent += text[i++]; later(tick, spd + (Math.random()*16-8)); }
-        else { later(()=>{ if(cb)cb(); }, 350); }
-      }
+    function typeText(text,cb){
+      inputEl.textContent='';let i=0;
+      const spd=Math.max(16,Math.min(45,1600/text.length));
+      function tick(){if(i<text.length){inputEl.textContent+=text[i++];later(tick,spd+(Math.random()*16-8));}else{later(()=>{if(cb)cb();},350);}}
       tick();
     }
 
-    const script = [
-      { type:'type', text:'Hi', delay:900 },
-      { type:'send', side:'sent', html:'Hi' },
-      { type:'typing', ms:1100 },
-      { type:'recv', html:'👋 <strong style="color:#f5a623;">Welcome to InvoiceMate!</strong><br><br>I turn job descriptions into professional PDF invoices in 30 seconds.<br><br>What\'s your <strong style="color:#f5a623;">business name?</strong>' },
-      { type:'type', text:'Johnson Plumbing & Heating', delay:1100 },
-      { type:'send', side:'sent', html:'Johnson Plumbing & Heating' },
-      { type:'typing', ms:900 },
-      { type:'recv', html:'Got it — <strong style="color:#f5a623;">Johnson Plumbing & Heating</strong> ✓<br><br>Are you <strong style="color:#f5a623;">VAT registered?</strong> Send your VAT number or reply NO.' },
-      { type:'type', text:'GB 327 4891 02', delay:900 },
-      { type:'send', side:'sent', html:'GB 327 4891 02' },
-      { type:'typing', ms:800 },
-      { type:'recv', html:'VAT saved ✓<br><br>🔥 <strong style="color:#f5a623;">All set!</strong> Describe any job and I\'ll build the invoice.' },
-      { type:'type', text:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.', delay:1600 },
-      { type:'send', side:'sent', html:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.' },
-      { type:'status', text:'building invoice...' },
-      { type:'typing', ms:2000 },
-      { type:'recv', html:'🧾 <strong style="color:#f5a623;">Invoice Preview — INV-847291</strong><br><br><strong>Customer:</strong> Mr Dave Johnson<br><strong>Job:</strong> Burst pipe repair & stopcock<br><br>Labour: 2 hrs @ £65 = £130.00<br>Stopcock: £40.00 · Fittings: £8.00<br>VAT (20%): £35.60<br><br><strong style="color:#f5a623;">TOTAL: £213.60</strong><br><br>Reply <strong>YES</strong> to generate PDF' },
-      { type:'type', text:'YES', delay:700 },
-      { type:'send', side:'sent', html:'YES' },
-      { type:'status', text:'generating PDF...' },
-      { type:'typing', ms:1800 },
-      { type:'pdf', filename:'INV-847291-Johnson.pdf' },
-      { type:'typing', ms:600 },
-      { type:'recv', html:'✅ <strong style="color:#f5a623;">Done!</strong> Forward it straight to Mr Dave Johnson. 👆<br><br>Send me your next job whenever you\'re ready.' },
-      { type:'status', text:'online' },
-      { type:'openInvoice' }
+    const invoiceScript=[
+      {type:'type',text:'Hi',delay:900},
+      {type:'send',html:'Hi'},
+      {type:'typing',ms:1100},
+      {type:'recv',html:'👋 <strong style="color:#f5a623;">Welcome to InvoiceMate!</strong><br><br>I turn job descriptions into professional PDF invoices in 30 seconds.<br><br>What\'s your <strong style="color:#f5a623;">business name?</strong>'},
+      {type:'type',text:'Johnson Plumbing & Heating',delay:1100},
+      {type:'send',html:'Johnson Plumbing & Heating'},
+      {type:'typing',ms:900},
+      {type:'recv',html:'Got it ✓<br><br>Are you <strong style="color:#f5a623;">VAT registered?</strong> Send your number or reply NO.'},
+      {type:'type',text:'GB 327 4891 02',delay:900},
+      {type:'send',html:'GB 327 4891 02'},
+      {type:'typing',ms:800},
+      {type:'recv',html:'🔥 <strong style="color:#f5a623;">All set!</strong> Describe any job and I\'ll build the invoice.'},
+      {type:'type',text:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.',delay:1600},
+      {type:'send',html:'Fixed burst pipe at 22 High St for Mr Dave Johnson. 2 hrs at £65/hr, new stopcock £40. 30 day payment.'},
+      {type:'status',text:'building invoice...'},
+      {type:'typing',ms:2000},
+      {type:'recv',html:'🧾 <strong style="color:#f5a623;">Preview — INV-847291</strong><br><br>Mr Dave Johnson · Burst pipe repair<br>Labour £130 · Stopcock+Fittings £48<br>VAT £35.60<br><br><strong style="color:#f5a623;">TOTAL: £213.60</strong><br><br>Reply <strong>YES</strong> to generate PDF'},
+      {type:'type',text:'YES',delay:700},
+      {type:'send',html:'YES'},
+      {type:'status',text:'generating PDF...'},
+      {type:'typing',ms:1800},
+      {type:'pdf',filename:'INV-847291-Johnson.pdf',pdfMode:'invoice'},
+      {type:'typing',ms:600},
+      {type:'recv',html:'✅ <strong style="color:#f5a623;">Done!</strong> Forward it straight to Mr Dave Johnson. 👆'},
+      {type:'status',text:'online'},
+      {type:'openViewer',mode:'invoice'}
     ];
 
-    function run(i){
-      if(i >= script.length) return;
-      const s = script[i];
+    const quoteScript=[
+      {type:'type',text:'Quote for new bathroom at 5 Main St for Mr Tom Bradley. Tiles £400, labour 4 days at £200/day. 30% deposit.',delay:900},
+      {type:'send',html:'Quote for new bathroom at 5 Main St for Mr Tom Bradley. Tiles £400, labour 4 days at £200/day. 30% deposit.'},
+      {type:'status',text:'building quote...'},
+      {type:'typing',ms:2200},
+      {type:'recv',html:'📋 <strong style="color:#f5a623;">Preview — QTE-293847</strong><br><br>Mr Tom Bradley · New bathroom<br>Tiles £400 · Labour £800 · VAT £240<br><strong style="color:#f5a623;">TOTAL: £1,440.00</strong><br>Deposit (30%): <strong>£432.00</strong><br><br>Reply <strong>YES</strong> to generate quote PDF'},
+      {type:'type',text:'YES',delay:800},
+      {type:'send',html:'YES'},
+      {type:'status',text:'generating PDF...'},
+      {type:'typing',ms:1800},
+      {type:'pdf',filename:'QTE-293847-Bradley.pdf',pdfMode:'quote'},
+      {type:'typing',ms:600},
+      {type:'recv',html:'✅ Quote sent! Forward to Mr Tom Bradley.<br><br>When he accepts, send:<br><strong style="color:#f5a623;">CONVERT QTE-293847</strong>'},
+      {type:'status',text:'online'},
+      {type:'pause',ms:1400},
+      {type:'type',text:'CONVERT QTE-293847',delay:800},
+      {type:'send',html:'CONVERT QTE-293847'},
+      {type:'status',text:'converting...'},
+      {type:'typing',ms:1200},
+      {type:'recv',html:'🧾 <strong style="color:#f5a623;">Quote converted!</strong><br>INV-948302 created from QTE-293847<br>Mr Tom Bradley · £1,440.00'},
+      {type:'status',text:'generating PDF...'},
+      {type:'typing',ms:1500},
+      {type:'pdf',filename:'INV-948302-Bradley.pdf',pdfMode:'converted'},
+      {type:'typing',ms:500},
+      {type:'recv',html:'✅ <strong style="color:#f5a623;">Invoice sent!</strong> Forward to Mr Tom Bradley. 👆'},
+      {type:'status',text:'online'},
+      {type:'openViewer',mode:'converted'}
+    ];
 
-      if(s.type==='type'){
-        later(()=>typeText(s.text, ()=>run(i+1)), s.delay||600);
-        return;
-      }
-      if(s.type==='send'){
-        later(()=>{ inputEl.textContent=''; addMsg(s.side, s.html); run(i+1); }, 180);
-        return;
-      }
-      if(s.type==='recv'){
-        later(()=>{ addMsg('received', s.html); later(()=>run(i+1), 350); }, 80);
-        return;
-      }
-      if(s.type==='typing'){
-        later(()=>showTyping(s.ms, ()=>run(i+1)), 280);
-        return;
-      }
-      if(s.type==='pdf'){
-        later(()=>{ addMsg('received', '', true, s.filename); later(()=>run(i+1), 350); }, 80);
-        return;
-      }
-      if(s.type==='status'){
-        statusEl.textContent = s.text; run(i+1); return;
-      }
-      if(s.type==='openInvoice'){
-        later(()=>demoopenInvoice(), 900); return;
-      }
-      run(i+1);
+    function run(script,i){
+      if(i>=script.length)return;
+      const s=script[i];const next=()=>run(script,i+1);
+      if(s.type==='type'){later(()=>typeText(s.text,next),s.delay||600);return;}
+      if(s.type==='send'){later(()=>{inputEl.textContent='';addMsg('sent',s.html);next();},180);return;}
+      if(s.type==='recv'){later(()=>{addMsg('received',s.html);later(next,350);},80);return;}
+      if(s.type==='typing'){later(()=>showTyping(s.ms,next),280);return;}
+      if(s.type==='pdf'){later(()=>{addMsg('received','',true,s.filename,s.pdfMode);later(next,350);},80);return;}
+      if(s.type==='status'){statusEl.textContent=s.text;next();return;}
+      if(s.type==='pause'){later(next,s.ms);return;}
+      if(s.type==='openViewer'){later(()=>openViewer(s.mode),900);return;}
+      next();
     }
 
-    window.demoStart = function(){
-      clearAll();
-      viewer.style.transform = 'translateY(100%)';
-      // Clear chat keeping date stamp
-      chatBody.innerHTML = '<div style="text-align:center;margin:4px 0 8px;"><span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span></div>';
-      inputEl.textContent = '';
-      statusEl.textContent = 'online';
-      later(()=>run(0), 500);
+    window.switchTab=function(tab){
+      currentTab=tab;
+      document.getElementById('tabInvoice').style.background=tab==='invoice'?'#e85a1a':'transparent';
+      document.getElementById('tabInvoice').style.color=tab==='invoice'?'white':'#6b7280';
+      document.getElementById('tabQuote').style.background=tab==='quote'?'#e85a1a':'transparent';
+      document.getElementById('tabQuote').style.color=tab==='quote'?'white':'#6b7280';
+      demoStart();
     };
 
-    // Auto-start when section scrolls into view
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ window.demoStart(); observer.disconnect(); } });
-    }, { threshold: 0.3 });
-    observer.observe(document.getElementById('demo'));
+    window.demoStart=function(){
+      clearAll();
+      viewer.style.transform='translateY(100%)';
+      chatBody.innerHTML='<div style="text-align:center;margin:4px 0 8px;"><span style="background:rgba(17,27,33,0.7);color:#8696a0;font-size:10px;padding:3px 9px;border-radius:10px;">Today</span></div>';
+      inputEl.textContent='';statusEl.textContent='online';
+      later(()=>run(currentTab==='invoice'?invoiceScript:quoteScript,0),500);
+    };
 
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){window.demoStart();observer.disconnect();}});
+    },{threshold:0.3});
+    observer.observe(document.getElementById('demo'));
   })();
   </script>
 
