@@ -742,6 +742,7 @@
                   <table style="width:100%;border-collapse:collapse;font-size:7px;"><thead><tr style="background:#1a1612;color:white;"><th style="padding:3px 4px;text-align:left;">Item</th><th style="padding:3px 4px;text-align:right;">Total</th></tr></thead><tbody><tr><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Labour (2hrs@£65)</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£130.00</td></tr><tr style="background:#f8f4ee;"><td style="padding:3px 4px;font-weight:700;color:#1a1612;">Stopcock & fittings</td><td style="padding:3px 4px;text-align:right;color:#1a1612;">£48.00</td></tr></tbody></table>
                   <div style="display:flex;justify-content:flex-end;margin-top:5px;"><div style="width:110px;"><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>Subtotal:</span><span>£178.00</span></div><div style="display:flex;justify-content:space-between;font-size:7px;color:#8a7f72;padding:2px 5px;background:#f5f0e8;"><span>VAT 20%:</span><span>£35.60</span></div><div style="display:flex;justify-content:space-between;font-size:9px;font-weight:900;color:white;background:#c8420a;padding:4px 5px;margin-top:2px;"><span>TOTAL:</span><span>£213.60</span></div></div></div>
                   <div style="background:#f5f0e8;border-left:3px solid #c8420a;padding:5px 7px;margin-top:7px;font-size:7px;"><div style="font-weight:700;color:#c8420a;font-size:6px;text-transform:uppercase;margin-bottom:2px;">Bank Details</div><div style="color:#1a1612;">Barclays · 20-00-00 · 12345678 · Ref: INV-847291</div></div>
+                  <div style="background:#25d366;padding:5px 8px;margin-top:5px;border-radius:3px;display:flex;align-items:center;gap:6px;"><span style="font-size:13px;">💳</span><div><div style="font-size:7px;font-weight:700;color:white;text-transform:uppercase;letter-spacing:0.05em;">Pay Online</div><div style="font-size:7px;color:rgba(255,255,255,0.85);">buy.stripe.com/invoicemate</div></div></div>
                 </div>
                 <div style="background:#1a1612;padding:5px;text-align:center;font-size:6px;color:#5a5248;">InvoiceMate · invoicemate.uk</div>
               </div>
@@ -886,11 +887,15 @@
       {type:'recv',html:'🧾 <strong style="color:#f5a623;">Preview — INV-847291</strong><br><br>Mr Dave Johnson · Burst pipe repair<br>Labour £130 · Stopcock+Fittings £48<br>VAT £35.60<br><br><strong style="color:#f5a623;">TOTAL: £213.60</strong><br><br>Reply <strong>YES</strong> to generate PDF'},
       {type:'type',text:'YES',delay:700},
       {type:'send',html:'YES'},
+      {type:'typing',ms:800},
+      {type:'recv',html:'💳 Would you like to include a <strong style="color:#f5a623;">payment link</strong> on this invoice?<br><br>Paste your link or reply <strong>SKIP</strong>'},
+      {type:'type',text:'https://buy.stripe.com/invoicemate',delay:1200},
+      {type:'send',html:'https://buy.stripe.com/invoicemate'},
       {type:'status',text:'generating PDF...'},
       {type:'typing',ms:1800},
       {type:'pdf',filename:'INV-847291-Johnson.pdf',pdfMode:'invoice'},
       {type:'typing',ms:600},
-      {type:'recv',html:'✅ <strong style="color:#f5a623;">Done!</strong> Forward it straight to Mr Dave Johnson. 👆'},
+      {type:'recv',html:'✅ <strong style="color:#f5a623;">Done!</strong> Payment link included. Forward it straight to Mr Dave Johnson. 👆'},
       {type:'status',text:'online'},
       {type:'openViewer',mode:'invoice'}
     ];
